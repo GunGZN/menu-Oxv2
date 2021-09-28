@@ -2,15 +2,28 @@
 clear
 clear
 echo -e "***************-- SCRIPT BY LiL Gun-X --********************" | lolcat
-echo -e "\033[0;31m ::::::::  :::    ::: ::::    ::: :::    ::: :::     ::: :::::::::  ::::    :::" 
-echo -e "\033[0;32m:+:    :+: :+:    :+: :+:+:   :+: :+:    :+: :+:     :+: :+:    :+: :+:+:   :+:" 
-echo -e "\033[0;33m+:+        +:+    +:+ :+:+:+  +:+  +:+  +:+  +:+     +:+ +:+    +:+ :+:+:+  +:+"
-echo -e "\033[0;34m:#:        +#+    +:+ +#+ +:+ +#+   +#++:+   +#+     +:+ +#++:++#+  +#+ +:+ +#+"
-echo -e "\033[0;35m+#+   +#+# +#+    +#+ +#+  +#+#+#  +#+  +#+   +#+   +#+  +#+        +#+  +#+#+#" 
-echo -e "\033[0;36m#+#    #+# #+#    #+# #+#   #+#+# #+#    #+#   #+#+#+#   #+#        #+#   #+#+#"
-echo -e "\033[0;37m ########   ########  ###    #### ###    ###     ###     ###        ###    ####"
-
+echo -e "\033[0;31m           ____          __     __  ____    _   _ "
+echo -e "\033[0;32m          / ___|  __  __ \ \   / / |  _ \  | \ | |"
+echo -e "\033[0;34m          \___ \  \ \/ /  \ \ / /  | |_) | |  \| |"
+echo -e "\033[0;34m           ___) |  >  <    \ V /   |  __/  | |\  |"
+echo -e "\033[0;35m          |____/  /_/\_\    \_/    |_|     |_| \_|"
 echo -e "*****************ติดต่อสอบถามได้ที่ LINE : gzn007 ***************" | lolcat
+fi
+_ons=$(ps -x | grep sshd | grep -v root | grep priv | wc -l)
+[[ "$(cat /etc/SSHPlus/Exp)" != "" ]] && _expuser=$(cat /etc/SSHPlus/Exp) || _expuser="0"
+[[ -e /etc/openvpn/openvpn-status.log ]] && _onop=$(grep -c "10.8.0" /etc/openvpn/openvpn-status.log) || _onop="0"
+[[ -e /etc/default/dropbear ]] && _drp=$(ps aux | grep dropbear | grep -v grep | wc -l) _ondrp=$(($_drp - 1)) || _ondrp="0"
+_onli=$(($_ons + $_onop + $_ondrp))
+_ram=$(printf ' %-9s' "$(free -h | grep -i mem | awk {'print $2'})")
+_usor=$(printf '%-8s' "$(free -m | awk 'NR==2{printf "%.2f%%", $3*100/$2 }')")
+_usop=$(printf '%-1s' "$(top -bn1 | awk '/Cpu/ { cpu = "" 100 - $8 "%" }; END { print cpu }')")
+_core=$(printf '%-1s' "$(grep -c cpu[0-9] /proc/stat)")
+_system=$(printf '%-14s' "$system")
+_hora=$(printf '%(%H:%M:%S)T')
+_onlin=$(printf '%-5s' "$_onli")
+_userexp=$(printf '%-5s' "$_expuser")
+_tuser=$(awk -F: '$3>=1000 {print $1}' /etc/passwd | grep -v nobody | wc -l)
+
 ISP=$(curl -s ipinfo.io/org | cut -d " " -f 2-10 )
 CITY=$(curl -s ipinfo.io/city )
 WKT=$(curl -s ipinfo.io/timezone )
@@ -31,7 +44,7 @@ echo -e "* ผู้้ให้บริการ : $ISP"
 echo -e "* เมือง​ : $CITY"
 echo -e "* เวลา​ : $WKT"
 echo -e "* ไอพี​ : $IPVPS"
-echo -e "\033[1;32m* ออนไลน์:\033[1;37m $_onlin"
+echo -e "* ออนไลน์: $_onlin"
 
 echo -e ""
 echo -e "************************************************************" | lolcat
