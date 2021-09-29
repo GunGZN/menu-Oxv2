@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# By SP-VPN TH
+# By LiLGun-X
 # ==================================================
 
 # initialisasi var
@@ -42,7 +42,11 @@ sed -i 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g' /etc/sysctl.conf
 # TRUENOPRO TCP 443
 cat > /etc/openvpn/true-nopro.ovpn <<-END
 client
-auth-user-pass
+
+<auth-user-pass>
+Admin
+1234
+</auth-user-pass>
 dev tun
 proto tcp
 port 443
