@@ -10,6 +10,9 @@ if [[ "$IP" = "" ]]; then
 domain=$(cat /etc/v2ray/domain)
 else
 domain=$IP
+echo -e "*******************************" | lolcat
+echo -e "           สร้างชื่อผู้ใช้"
+echo -e "*******************************" | lolcat
 fi
 read -p "ชื่อ : " Login
 read -p "รหัสผ่าน : " Pass
