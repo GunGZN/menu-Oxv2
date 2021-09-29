@@ -65,7 +65,7 @@ verb 3
 cipher none
 comp-lzo
 script-security 3
-remote SPNETVPN 999 udp
+remote SxVPN 999 udp
 remote xxxxxxxxx:443
 http-proxy xxxxxxxxx 8080
 http-proxy-option CUSTOM-HEADER Host www.opensignal.com
@@ -250,7 +250,7 @@ sed -i $MYIP2 /etc/openvpn/TCP.ovpn;
 
 # Buat config client UDP 2200
 cat > /etc/openvpn/UDP.ovpn <<-END
-FRIENDLY_NAME "SPVPN"
+FRIENDLY_NAME "SxVPN"
 client
 dev tun
 proto udp
